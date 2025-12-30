@@ -3,6 +3,7 @@ import React from 'react'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { Padding } from '@mui/icons-material';
+import MenuCard from './menuCard';  
 
 
 
@@ -21,6 +22,8 @@ const foodTypes=[
     {label:"seasonal", value:"seasonal"},
 ]
 
+const menu=[1,1,1,1,1,1]
+
 const RestaurantDetails = () => {
     const [foodType, setFoodType]=React.useState("all");    
     const handleFilter=(e)=>{
@@ -30,18 +33,18 @@ const RestaurantDetails = () => {
         <section>
             <h3 className='text-gray-500 py-2 mt-10'>Home/india/indian fast food/3</h3>
             <div>
-                <Grid container space={4}>
+                <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <img className="w-full h-[40vh] object-cover"
                          src="http://res.cloudinary.com/dcpesbd8q/image/upload/v1707802815/ux3xq93xzfbqhtudigv2.jpg"
                           alt="" />
                     </Grid >
                     
-                    <Grid items xs={12} lg={6} >
+                    <Grid item xs={12} lg={6} >
                         <img className='w-full h-[40vh] object-cover'
                         src="https://res.cloudinary.com/dcpesbd8q/image/upload/v1707802819/cpfxroggttxg6tedfskd.jpg" alt="" />
                     </Grid>
-                    <Grid items xs={12} lg={6}>
+                    <Grid item xs={12} lg={6}>
                         <img className='w-full h-[40vh] object-cover'
                          src="https://res.cloudinary.com/dcpesbd8q/image/upload/v1707802825/dtwyuhxuawmg3qzffv84.jpg" alt="" />
 
@@ -79,9 +82,9 @@ const RestaurantDetails = () => {
         </section>
         <divider>
             <section className='pt-[2rem] lg:flex relative'>
-                <div className='space-y-10 lg:w-[20%] filter p-5 shadow-md'>
+                <div className='space-y-10 lg:w-[20%] filter p-5 '>
                     
-                    <div className='box space-y-5 lg:sticky top-28'>
+                    <div className='box space-y-5 lg:sticky top-28 d'>
                         <div>
                             <Typography varients="h5" sx={{PaddingBottom:"1rem"}}>Food Type</Typography>
 
@@ -91,7 +94,7 @@ const RestaurantDetails = () => {
                                 </RadioGroup>
                             </FormControl>
                         </div>
-                        <Divider /> 
+                       <Divider /> 
                         <div>
                             <Typography varients="h5" sx={{PaddingBottom:"1rem"}}>Food Category</Typography>
 
@@ -105,7 +108,9 @@ const RestaurantDetails = () => {
                     </div>
 
                 </div>
-                <div className='space-y-10 lg:w-[80%] lg:pl-10'>Menu</div>
+                <div className='space-y-10 lg:w-[80%] lg:pl-10'>
+                    {menu.map((item)=><MenuCard/>)}
+                </div>
 
             </section>
 

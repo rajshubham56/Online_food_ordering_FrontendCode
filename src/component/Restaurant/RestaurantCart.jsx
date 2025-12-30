@@ -40,4 +40,4 @@ const RestaurantCart = () => {
   )
 }
 
-export default RestaurantCart
+export default RestaurantCart;
