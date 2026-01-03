@@ -2,6 +2,8 @@ import { Button, TextField, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { loginUser } from '../State/Authentication/Action';
+import { useDispatch } from 'react-redux';
 
 
 const initialValues={
@@ -9,14 +11,16 @@ const initialValues={
     password:""
 }
 const LoginForm = () => {
-    const navigate = useNavigate()
+    const navigate=useNavigate()
+    const dispatch=useDispatch()
 
-    const handleSubmit=()=>{
+    const handleSubmit=(values)=>{
+      dispatch(loginUser({userData:values,navigate}))
 
     }
   return (
     <div>
-      <Typography varient='h5' className='text-center'>
+      <Typography variant='h5' className='text-center'>
         Login
       </Typography>
       <Formik onSubmit={handleSubmit} initialValues={initialValues}>

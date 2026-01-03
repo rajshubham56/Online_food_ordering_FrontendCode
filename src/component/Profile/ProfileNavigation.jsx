@@ -1,4 +1,4 @@
-import { AddReaction, title } from '@mui/icons-material'
+import { AddReaction, Logout, title } from '@mui/icons-material'
 import { Divider, Drawer, Icon, useMediaQuery } from '@mui/material'
 import React from 'react'
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
@@ -9,6 +9,8 @@ import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import EventIcon from '@mui/icons-material/Event';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useNavigate } from 'react-router-dom';
+import { logout } from '../State/Authentication/Action';
+import { useDispatch } from 'react-redux';
 
 
 const menu=[
@@ -23,8 +25,14 @@ const menu=[
 const ProfileNavigation = ({open,handleClose}) => {
     const isSmallScreen=useMediaQuery("(max-width:900px)")
     const navigate=useNavigate();
+    const dispatch=useDispatch();
 
     const handleNavigate=(item)=>{
+      if(item.title.toUpperCase() ==="LOGOUT"){
+        dispatch(logout());
+        navigate("/")
+      }
+      else
       navigate(`/my-profile/${item.title.toLowerCase()}`)
 
     }

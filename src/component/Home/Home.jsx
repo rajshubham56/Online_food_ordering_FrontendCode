@@ -3,7 +3,7 @@ import './Home.css';
 import MultiItemCarousel from "./MultiItemCarousel";
 import RestaurantCard from '../Restaurant/RestaurantCart';    
 
-const restaurant=[1,1,1,1,1,1,1,1]
+const restaurants=[1,1,1,1,1,1,1,1]
 const Home = () => {
 
   return (
@@ -30,8 +30,11 @@ const Home = () => {
           <h1 className='text-2xl font-bold text-gray-400 pb-8'>Order From  Our Handpick Favorites</h1>
           <div className='flex flex-wrap items-center justify-around gap-5'>
              {
-              restaurant.map((item)=><RestaurantCard/>)
-             }
+  restaurants.map((item) => (
+    <RestaurantCard/>
+  ))
+}
+             
           </div>
         </section>
         
@@ -40,4 +43,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home;

@@ -8,13 +8,27 @@ import Badge from "@mui/material/Badge";
 import './Navbar.css';
 import { Person } from '@mui/icons-material';
 import { navigate, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+   const {auth} = useSelector(store=>store)
+   
    const navigate=useNavigate()
+
+   const handleAvatarClick=()=>{
+    if(auth.user?.role==="ROLE_CUSTOMER"){
+      navigate("/my-profile")
+    }else{
+      navigate("/admin/restaurant")
+    }
+
+   }
+
+
   return (
     <Box className='px-5 sticky top-0 z-50 py-[0.8rem] bg-[#e91e63] lg:px-20 flex justify-between'>
         <div className='lg:mr-10 cursor-pointer flex items-center space-x-4'>
-          <li className='logo font-semibold text-gray-300 text2xl'>
+          <li onClick={()=>navigate("/")} className='logo font-semibold text-gray-300 text2xl'>
             Zosh food
           </li>
 
@@ -26,12 +40,19 @@ const Navbar = () => {
             </IconButton>
           </div>
           <div className=''>
-            {false ? <Avatar sx={{bgcolor:"white", color:pink.A400}}>C</Avatar>:
-            <IconButton onClick={()=>navigate("/account/login")}>
+            {auth.user ? 
+            (<Avatar onClick={handleAvatarClick} sx={{bgcolor:"white", color:pink.A400}}>
+              {auth.user?.fullName
+  ? auth.user.fullName.charAt(0).toUpperCase()
+  : auth.isLoading
+  ? ""
+  : "U"}</Avatar>):
+            (<IconButton onClick={()=>navigate("/account/login")}>
               <Person/>
-            </IconButton>}
+            </IconButton>)}
             
           </div>
+          
           <div>
             <Badge  color="secondary" badgeContent={4}>
               <ShoppingCartIcon sx={{ fontSize: "1.5rem" }} />
@@ -44,4 +65,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar
+export default Navbar;
